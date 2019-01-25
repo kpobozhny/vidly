@@ -1,6 +1,8 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
+const auth = require('./routes/auth');
+const users = require('./routes/users');
 const rentals = require('./routes/rentals');
 const movies = require('./routes/movies');
 const customers = require('./routes/customers');
@@ -14,6 +16,8 @@ mongoose.connect('mongodb://localhost/vidly', { useNewUrlParser: true })
 .catch(err => console.error('Could not connect to MongoDB..', err))
 
 app.use(express.json());
+app.use('/api/auth', auth);
+app.use('/api/users', users);
 app.use('/api/rentals', rentals);
 app.use('/api/movies', movies);
 app.use('/api/customers', customers);

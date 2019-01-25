@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
     "fawn": "^2.1.5",
     "joi": "^14.3.1",
     "joi-objectid": "^2.0.0",
-    "mongoose": "^5.4.6"
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.6",
+    "npm": "^6.7.0",
+    "un": "0.0.0"
   }
 }
