@@ -1,3 +1,4 @@
+//const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Genre, validate} = require('../models/genre');
@@ -7,8 +8,11 @@ const router = express.Router();
 const Joi = require('joi');
 
 router.get('/', async (req, res) => {
-    const genres = await Genre.find().sort('name');
-    res.send(genres);
+    // !!!!!!!!!!!! remove when testing is finished
+        throw new Error('Can not get genres.');
+
+        const genres = await Genre.find().sort('name');
+        res.send(genres);
 });
 
 

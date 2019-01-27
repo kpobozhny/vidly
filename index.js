@@ -1,3 +1,7 @@
+require('express-async-errors');
+const winston = require('winston');
+require('winston-mongodb');
+const error = require('./middleware/error');
 const config = require('config');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -11,6 +15,21 @@ const genres = require('./routes/genres');
 const home = require('./routes/home');
 const express = require('express');
 const app = express();
+
+winston.handleExceptions(new winston.transports.File({filename: 'uncaughtExceptions.log'}));
+
+process.on('unhandledRejection', (ex) => {
+    throw ex;
+});
+
+winston.add(winston.transports.File, { filename: 'logfile.log' });
+winston.add(winston.transports.MongoDB, { 
+    db: 'mongodb://localhost/vidly',
+    level: 'error'
+ });
+
+const p = Promise.reject(new Error('Something failed miserbly!'));
+p.then(() => console.log('Done'));
 
 if (!config.get('jwtPrivateKey')){
     console.log('FATAL ERROR: jwtPrivateKey is not defined!')
@@ -30,6 +49,8 @@ app.use('/api/movies', movies);
 app.use('/api/customers', customers);
 app.use('/api/genres', genres);
 app.use('/', home);
+
+app.use(error);
 
 
 // PORT
