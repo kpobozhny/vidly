@@ -9,7 +9,7 @@ const Joi = require('joi');
 
 router.get('/', async (req, res) => {
     // !!!!!!!!!!!! remove when testing is finished
-        throw new Error('Can not get genres.');
+        // throw new Error('Can not get genres.');
 
         const genres = await Genre.find().sort('name');
         res.send(genres);
