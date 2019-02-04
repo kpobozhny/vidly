@@ -7,16 +7,16 @@ let server;
 
 
 describe('/api/genres', () => {
-    beforeAll( async () => { 
-        server = await require('../../index');
+    beforeAll( () => { 
+        server = require('../../index');
     });
 
     afterEach(async () => { 
         await Genre.remove({});
     });
 
-    afterAll( () => { 
-        server.close();
+    afterAll( async () => { 
+        await server.close();
         
     });
 
