@@ -21,6 +21,7 @@
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.6",
     "npm": "^6.7.0",
     "un": "0.0.0",

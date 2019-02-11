@@ -7,6 +7,6 @@
 // Return 400 if rental is already processed
 // Return 200 if valid request
 // Set the return date
-// Calculate the rental fee
+// Calculate the rental fee (numberofDays * movie.dailyRentalRate)
 // Increase the stock
 // Return the rental
