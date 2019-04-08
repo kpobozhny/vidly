@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "a624bc2f-98b5-41ae-b1e6-8a02c4274b5b",
+		"name": "Vidly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Chat message",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4288423c-d32f-4a8e-a2bf-168ab0eb9a1e",
+						"exec": [
+							"var messages = pm.environment.get(\"messages\");",
+							"",
+							"if(!messages){",
+							"    var messages = [\"message 01\", \"message 02\", \"message 03\"];",
+							"    console.log(messages);",
+							"}",
+							"",
+							"var currentMessage = messages.shift();",
+							"console.log(currentMessage);",
+							"pm.environment.set(\"message\", currentMessage);",
+							"pm.environment.set(\"messages\", messages);",
+							"console.log(messages);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8332302-1182-41dd-bf26-e7c75eacad5b",
+						"exec": [
+							"var messages = pm.environment.get(\"messages\");",
+							"",
+							"if (messages && messages.length > 0){",
+							"    postman.setNextRequest(\"Chat message\");",
+							"     console.log(\"here\");",
+							"} else {",
+							"    postman.setNextRequest(null);",
+							"}",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\": \"{{message}}\"\n}"
+				},
+				"url": {
+					"raw": "192.168.4.110:8150/webinars/chat/14/21371828",
+					"host": [
+						"192",
+						"168",
+						"4",
+						"110"
+					],
+					"port": "8150",
+					"path": [
+						"webinars",
+						"chat",
+						"14",
+						"21371828"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Tom Hanks\",\n\t\"email\": \"tom@gmail.com\",\n\t\"password\": \"qwerty\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3090/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3090",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Mosh Hamedani\",\n\t\"email\": \"developing@gmail.com\",\n\t\"password\": \"qwerty\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "my course",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3090/api/genres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3090",
+					"path": [
+						"api",
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test PUT",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Airplane\",\n\t\"genreId\": \"5ca8e925b96a693cf07983d1\",\n\t\"numberInStock\": 31,\n\t\"dailyRentalRate\": 21\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3090/api/movies/5ca8e925b96a693cf07983d2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3090",
+					"path": [
+						"api",
+						"movies",
+						"5ca8e925b96a693cf07983d2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test POST",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Ameli\",\n\t\"genreId\": \"5ca8e925b96a693cf07983d1\",\n\t\"numberInStock\": 3,\n\t\"dailyRentalRate\": 10\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3090/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3090",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test GET Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/movies/5c49f8e3ef8de539e096b1ad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"movies",
+						"5c49f8e3ef8de539e096b1ad"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
