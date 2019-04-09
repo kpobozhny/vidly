@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
 // define a new method called 'generateAuthToken'
 // any user with this schema will own this method as well
 userSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, config.get('jwtPrivateKey'));
+    const token = jwt.sign({_id: this._id, name: this.name, email: this.email, isAdmin: this.isAdmin}, config.get('jwtPrivateKey'));
     return token;
 }
 
