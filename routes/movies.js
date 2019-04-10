@@ -32,7 +32,7 @@ router.post('/', auth, async (req, res) => {
     res.send(movie);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
 
     // Validate
     // If invalid, return 400 - Bad request
@@ -70,7 +70,7 @@ router.get('/:id', async (req, res) => {
     res.send(movie);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     const movie = await Movie.findByIdAndRemove(req.params.id);
     if(!movie) return res.status(404).send(`The movie with the given id=${req.params.id} was not found.`);
     res.send(movie);
